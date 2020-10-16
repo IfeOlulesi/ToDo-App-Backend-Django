@@ -1,0 +1,25 @@
+{% load static %}
+<html>
+  <head>
+    <title>Todo | All tasks</title>
+     
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+  </head>
+  <body>
+    {% if task_list %}
+      <h2>List of available tasks</h2>
+      <ol>
+        {% for task in task_list %}
+          <li>
+            <a href="{% url 'todo:details' task.id %}">
+              {{task.task_text}}
+            </a>
+          </li>
+        {% endfor %}
+      </ol>
+    {% endif %}   
+  </body>
+
+</html>

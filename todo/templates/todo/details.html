@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Todo | Details | Task {{task.id}}</title>
+    <style>
+      a {color: blue}
+    </style>
+  </head>
+  <body>
+    {% if task %}
+      <h2>{{task.task_text}}</h2>
+      <div>
+        <ul>
+          <li>Date created: {{task.creation_date}}</li>
+          <li>Date due: {{task.due_date}}</li>
+          <li>Importance: {{task.importance}}</li>
+          <li>
+            {% if task.is_due %}
+              <p style="color: red">Overdue</p>
+            {% else %}
+              <p style="color: green">Not yet due</p>
+            {% endif %}
+          </li>
+        </ul>
+        <a href="{% url 'todo:index' %}">Home</a>
+      </div>
+
+    {% endif %}
+  </body>
+
+</html>
