@@ -1,0 +1,38 @@
+Username: ifeolulesi
+Password: ilovemangoes
+{% comment %} 
+looking at things,
+  todo/views.py
+  todo/urls.py 
+
+won't be useful {% endcomment %}
+
+{% comment %} Views:
+  List of all tasks
+  Details of a particular task 
+  Sorts:
+    Time:
+      Done 
+      Undone
+      Due at a particular date 
+    Importance:
+      High
+      Medium
+      Low 
+  Add task 
+ {% endcomment %}
+
+
+
+Steps to take in designing my todo app
+  1 - The Project
+    - What does it do? 
+    - Who's going to be using the app?
+    - What are they going to use it for?
+    - How can it be arranged in an intuitive way? 
+
+    Brainstorm the audience
+      - Who's using the app
+      - In what situation would they use the app?
+
+    Start the wireframew and User Journey
