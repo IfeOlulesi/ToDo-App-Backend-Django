@@ -1,4 +1,4 @@
-# ToDo-App-Django
+# ToDo-App-Backend-Django
 A simple todo app built using django
 
 ## Setup
