@@ -1,14 +1,17 @@
-<!DOCTYPE html>
+{% load static %}
 <html>
   <head>
     <title>Todo | Details | Task {{task.id}}</title>
-    <style>
-      a {color: blue}
-    </style>
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
   </head>
   <body>
     {% if task %}
+      <a href="{% url 'todo:index' %}">Home</a>
+
       <h2>{{task.task_text}}</h2>
+      <a href="{% url 'todo:edit' task.id%} ">Edit</a>
+
       <div>
         <ul>
           <li>Date created: {{task.creation_date}}</li>
@@ -22,7 +25,6 @@
             {% endif %}
           </li>
         </ul>
-        <a href="{% url 'todo:index' %}">Home</a>
       </div>
 
     {% endif %}
