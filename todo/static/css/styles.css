@@ -1,7 +1,11 @@
 a {
-  color: rgb(43, 88, 139);
+  /* color: #2b588b; */
+  font-size: 20px;
+  color:  rgb(24, 27, 27); 
 }
 
-/* body {
-  background-color: aquamarine;
-} */
+body {
+  background-color: rgb(240, 232, 232);
+  font-size: 20px;
+  color:  rgb(24, 27, 27);
+}

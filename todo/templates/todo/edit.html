@@ -1,0 +1,32 @@
+{% load static %}
+<html>
+  <head>
+    <title>Todo | {{task.id}} | Edit </title>
+     
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  </head>
+
+  <body>
+    <h2> {{task.task_text}}  </h2>
+
+    <form action="{% url 'todo:make_changes' task.id%}" method="post">
+      {% csrf_token %}
+
+      <label for="{{task.id}}-text">Task text: </label>
+      <input id="{{task.id}}-text" type="text" value="{{task.task_text}}" name="task_text" ><br>
+
+      <label for="{{task.id}}-due-date">Due date: </label>
+      <input id="{{task.id}}-due-date" type="date" name="task_date" ><br>
+
+      <label for="{{task.id}}-importance">Importance:</label>
+      <select id="{{task.id}}-importance" name="importance" >
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+      </select><br>
+
+      <input type="submit">
+    </form>
+
+  </body>
+</html>
