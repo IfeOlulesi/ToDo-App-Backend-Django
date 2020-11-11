@@ -1,16 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.views import generic
+
 from .models import Task
 
-def index(request):
-  task_list = Task.objects.order_by('-due_date')
-  return render(request, 'todo/index.html', {'task_list': task_list})
+class IndexView(generic.ListView):
+  template_name = 'todo/index.html'
+  context_object_name = 'task_list'
 
+  def get_queryset(self):
+    return Task.objects.order_by('-due_date')
+  
 
-def details(request, task_id):
-  task_obj = Task.objects.get(pk=task_id)
-  return render(request, 'todo/details.html', {'task': task_obj})
+class DetailView(generic.DetailView):
+  model = Task
+  template_name = 'todo/details.html'
 
 
 def edit(request, task_id):
@@ -19,9 +24,11 @@ def edit(request, task_id):
 
 
 def make_changes(request, task_id):
-  task = Task.objects.get(pk=task_id)
-  return HttpResponseRedirect(reverse('todo:details', args=(task.id,)))
-   
+  task = get_object_or_404(Task, pk=task_id)
 
-def add_task(request):
-  return HttpResponse("You are adding another task")
+  task.task_text = request.POST["task_text"]
+  task.due_date = request.POST["task_date"]
+  task.importance = request.POST["importance"]
+  task.save()
+
+  return HttpResponseRedirect(reverse('todo:details', args=(task.id,))) 
