@@ -1,5 +1,15 @@
 Username: ifeolulesi
 Password: ilovemangoes
+
+techwithtim
+goldenmorn
+
+PhilMorphy
+plantain chips
+
+EstherMary
+environment
+
 {% comment %} 
 looking at things,
   todo/views.py

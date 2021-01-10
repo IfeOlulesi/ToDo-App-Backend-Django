@@ -14,7 +14,7 @@ urlpatterns = [
   # Ex: todo/2/edit  --to edit the task
   path('<int:pk>/edit', views.edit, name='edit'),
   
-  # Ex: todo/2/make_changes
+  # Ex: todo/2/make_changes  -- this actually implements the changes
   path('<int:pk>/make_changes', views.make_changes, name='make_changes'),
   
   # Ex: todo/add_task

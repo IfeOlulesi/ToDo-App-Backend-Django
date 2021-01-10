@@ -1,11 +1,11 @@
-{% load static %}
-<html>
-  <head>
-    <title>Todo | Details | Task {{task.id}}</title>
+{% extends 'todo/base.html' %}
 
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-  </head>
-  <body>
+{% block title%}
+Todo | Details | Task {{task.id}}
+{% endblock%}
+
+{% block content %}
+  
     {% if task %}
       <a href="{% url 'todo:index' %}">Home</a>
 
@@ -28,6 +28,4 @@
       </div>
 
     {% endif %}
-  </body>
-
-</html>
+{% endblock%}

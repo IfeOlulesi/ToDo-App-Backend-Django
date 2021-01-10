@@ -1,0 +1,16 @@
+{% extends 'todo/base.html' %}
+
+{% block title %} Todo | Login 
+{% endblock %}
+
+{% block content %}
+  <h2> Login</h2>
+  
+  <form method="post">
+    {% csrf_token %}
+    {{form}}
+
+    <button type="submit">Submit </button>
+    <p>Don't have an account? <a href="/register"> Create one</a></p>
+  </form>
+{% endblock %}
