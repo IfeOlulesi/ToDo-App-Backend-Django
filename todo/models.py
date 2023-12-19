@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import datetime, pytz
 
 class Task(models.Model):
@@ -6,6 +7,7 @@ class Task(models.Model):
   creation_date = models.DateTimeField('date created')
   due_date = models.DateTimeField('date[when] due')
   importance = models.CharField(max_length=20)
+  user = models.ForeignKey(User, on_delete = models.CASCADE, blank = True, null = True)
 
   def __str__(self):
     return self.task_text

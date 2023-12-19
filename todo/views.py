@@ -3,7 +3,13 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework import permissions
+
 from .models import Task
+from .serializers import TaskSerializer
 
 class IndexView(generic.ListView):
   template_name = 'todo/index.html'
@@ -32,3 +38,31 @@ def make_changes(request, task_id):
   task.save()
 
   return HttpResponseRedirect(reverse('todo:details', args=(task.id,))) 
+
+
+class TaskListApiView(APIView):
+  premission_classes = permissions.IsAuthenticated
+
+  # List all tasks
+  def get(self, request, *args, **kwargs):
+    tasks = Task.objects.all()
+    serializer = TaskSerializer(tasks, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+  
+  def post(self, request, *args, **kwargs):
+    print(request)
+    data = {
+      'task_text': request.data.get('task_text'), 
+      'creation_date': request.data.get('creation_date'), 
+      'due_date': request.data.get('due_date'), 
+      'importance': request.data.get('importance'), 
+      'user': request.user.id 
+    }
+
+    serializer = TaskSerializer(data=data)
+
+    if serializer.isValid():
+      serializer.save()
+      return Response(serializer.data, status = status.HTTP_201_CREATED)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

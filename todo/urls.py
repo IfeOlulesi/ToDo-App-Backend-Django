@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf.urls import url
 
 from . import views
 
@@ -19,4 +20,7 @@ urlpatterns = [
   
   # Ex: todo/add_task
   # path('add_task/', views.add_task, name='add_task'),
+
+  # API
+  path('api', views.TaskListApiView.as_view()),
 ]
